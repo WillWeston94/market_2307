@@ -28,10 +28,4 @@ class Market
     end
     vendors_that_sell
   end
-
-  def potential_revenue
-    @vendors.sum do |item, quantity|
-      item.price * quantity
-    end
-  end
 end
