@@ -106,7 +106,26 @@ RSpec.describe Market do
 
     expected_hash_2 = 
     {
-
+      @item4 => 
+      {
+        :quantity => 50,
+        :vendors => [@vendor2]
+      },
+      @item4 => 
+      {
+        :quantity => 50,
+        :vendors => [@vendor2]
+      },
+      @item4 => 
+      {
+        :quantity => 50,
+        :vendors => [@vendor2]
+      },
+      @item4 => 
+      {
+        :quantity => 50,
+        :vendors => [@vendor2]
+      }
     }
     
     # binding.pry
