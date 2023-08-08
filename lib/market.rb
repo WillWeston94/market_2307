@@ -1,3 +1,5 @@
+require 'pry'
+
 class Market
   attr_reader :name,
               :vendors
@@ -59,5 +61,19 @@ class Market
 
   # return array of item objects
   def overstocked_items
+    overstocked_items = []
+    vendors = Hash.new(0)
+
+    @vendors.each do |vendor|
+      vendor.inventory.each do |item, quantity|
+        if quantity > 50
+          vendors[item] += 1
+        end
+      end
+    end
+      vendors.each do |item, vendor|
+        overstocked_items << item if vendor > 1
+      end
+      overstocked_items
   end
 end
