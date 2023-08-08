@@ -45,6 +45,15 @@ class Market
 
   #return a hash
   def total_inventory
+    inventory = Hash.new 
+
+    @vendors.each do |vendor|
+      @vendor.inventory.each do |item, quantity|
+        inventory[item][:quantity] += quanity
+        inventory[item][:vendors] << vendor
+      end
+    end
+    inventory
   end
 
   # return array of item objects
