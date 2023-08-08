@@ -92,7 +92,7 @@ RSpec.describe Market do
     # binding.pry
     expect(@market.sorted_item_list).to eq(expected_array)
   end
-  
+
   it 'Stocks vendor appropriate items and returns inventory sub-hashes' do
     @vendor1.stock(@item1, 35)
     @vendor1.stock(@item2, 7)
