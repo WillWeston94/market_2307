@@ -28,4 +28,13 @@ class Market
     end
     vendors_that_sell
   end
+  # return array
+  def sorted_item_list
+  end
+  #return a hash
+  def total_inventory
+  end
+  # return array of item objects
+  def overstocked_items
+  end
 end
