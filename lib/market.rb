@@ -30,10 +30,23 @@ class Market
   end
   # return array
   def sorted_item_list
+    items = @vendors.flat_map do |vendor| 
+      vendor.inventory.keys 
+    end
+    items = items.uniq 
+    sorted_items = items.sort_by do |item|
+      item.name 
+    end
+    sorted_item_list = sorted_items.map do |item|
+      item.name 
+    end
+    sorted_item_list
   end
+
   #return a hash
   def total_inventory
   end
+
   # return array of item objects
   def overstocked_items
   end

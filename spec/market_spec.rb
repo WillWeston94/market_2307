@@ -70,7 +70,7 @@ RSpec.describe Market do
     expect(@vendor3.potential_revenue).to eq(48.75)
   end
 
-  it 'Stocks vendor appropriate items and shows unique sorted item list' do
+  it 'Stocks vendor appropriate items and shows market unique sorted item list as array' do
     @vendor1.stock(@item1, 35)
     @vendor1.stock(@item2, 7)
     @vendor2.stock(@item4, 50)
@@ -81,8 +81,15 @@ RSpec.describe Market do
     @market.add_vendor(@vendor2)
     @market.add_vendor(@vendor3)
 
-    binding.pry
-    expect(@market.sorted_item_list).to eq()
+    expected_array = 
+    [
+      "Banana Nice Cream",
+      "Peach",
+      "Peach-Raspberry Nice Cream",
+      "Tomato"
+    ]
+    
+    # binding.pry
+    expect(@market.sorted_item_list).to eq(expected_array)
   end
-
 end
