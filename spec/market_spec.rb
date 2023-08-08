@@ -96,8 +96,8 @@ RSpec.describe Market do
   it 'Stocks vendor appropriate items and returns inventory sub-hashes' do
     @vendor1.stock(@item1, 35)
     @vendor1.stock(@item2, 7)
-    @vendor2.stock(@item4, 50)
-    @vendor2.stock(@item3, 25)
+    @vendor2.stock(@item3, 25) # swap the stocking of item3 and item4 so the sub hash generates numerically && chronologically 
+    @vendor2.stock(@item4, 50) # if item4 stocks before item3 the hash and sub hash lists it before as well
     @vendor3.stock(@item1, 65)
 
     @market.add_vendor(@vendor1)
@@ -106,28 +106,27 @@ RSpec.describe Market do
 
     expected_hash_2 = 
     {
-      @item4 => 
+      @item1 => # Peach 100 Rocky Mountain Fresh + Palisade Peach Shack
       {
-        :quantity => 50,
+        :quantity => 100,
+        :vendors => [@vendor1, @vendor3]
+      },
+      @item2 => # Tomato 7 Rocky Mountain Fresh
+      {
+        :quantity => 7,
+        :vendors => [@vendor1]
+      },
+      @item3 => # Peach Ice Cream 
+      {
+        :quantity => 25,
         :vendors => [@vendor2]
       },
-      @item4 => 
-      {
-        :quantity => 50,
-        :vendors => [@vendor2]
-      },
-      @item4 => 
-      {
-        :quantity => 50,
-        :vendors => [@vendor2]
-      },
-      @item4 => 
+      @item4 => # Banana Ice Cream 50 Ba-Nom
       {
         :quantity => 50,
         :vendors => [@vendor2]
       }
     }
-    
     # binding.pry
     expect(@market.total_inventory).to eq(expected_hash_2)
   end

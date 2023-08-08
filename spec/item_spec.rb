@@ -12,7 +12,7 @@ RSpec.describe Item do
     expect(@item2).to be_an_instance_of(Item)
   end
 
-  it "peace has name and price" do
+  it "peach has name and price" do
     # binding.pry
     expect(@item1.name).to eq("Peach")
     expect(@item1.price).to eq(0.75)
