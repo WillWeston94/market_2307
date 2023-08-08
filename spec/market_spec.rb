@@ -97,7 +97,7 @@ RSpec.describe Market do
     @vendor1.stock(@item1, 35)
     @vendor1.stock(@item2, 7)
     @vendor2.stock(@item3, 25) # swap the stocking of item3 and item4 so the sub hash generates numerically && chronologically 
-    @vendor2.stock(@item4, 50) # if item4 stocks before item3 the hash and sub hash lists it before as well
+    @vendor2.stock(@item4, 50) # IE if item4 stocks before item3 the hash and sub hash lists it before as well
     @vendor3.stock(@item1, 65)
 
     @market.add_vendor(@vendor1)
@@ -129,5 +129,22 @@ RSpec.describe Market do
     }
     # binding.pry
     expect(@market.total_inventory).to eq(expected_hash_2)
+  end
+
+  it 'Stocks vendor appropriate items and checks for over stocked items' do
+    @vendor1.stock(@item1, 35)
+    @vendor1.stock(@item2, 7)
+    @vendor2.stock(@item4, 50)
+    @vendor2.stock(@item3, 25)
+    @vendor3.stock(@item1, 65)
+
+    @market.add_vendor(@vendor1)
+    @market.add_vendor(@vendor2)
+    @market.add_vendor(@vendor3)
+
+    binding.pry
+    # Only the peach is overstocked because its sold by more than 1 vendor and its quantity is 100 which is over 50
+    # Banana Ice Cream is close because its ONLY sold by vendor 2 with its quantity == 50
+    expect(@market.overstocked_items).to eq([@item1])
   end
 end
