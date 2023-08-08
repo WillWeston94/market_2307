@@ -142,7 +142,7 @@ RSpec.describe Market do
     @market.add_vendor(@vendor2)
     @market.add_vendor(@vendor3)
 
-    binding.pry
+    # binding.pry
     # Only the peach is overstocked because its sold by more than 1 vendor and its quantity is 100 which is over 50
     # Banana Ice Cream is close because its ONLY sold by vendor 2 with its quantity == 50
     expect(@market.overstocked_items).to eq([@item1])

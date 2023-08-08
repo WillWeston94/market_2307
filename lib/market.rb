@@ -62,18 +62,17 @@ class Market
   # return array of item objects
   def overstocked_items
     overstocked_items = []
-    vendors = Hash.new(0)
 
     @vendors.each do |vendor|
       vendor.inventory.each do |item, quantity|
-        if quantity > 50
-          vendors[item] += 1
+        # binding.pry
+        if quantity > 50 && vendors_that_sell(item).count > 1
+          # binding.pry
+          overstocked_items << item 
         end
       end
     end
-      vendors.each do |item, vendor|
-        overstocked_items << item if vendor > 1
-      end
-      overstocked_items
+    # binding.pry
+    overstocked_items
   end
 end
